@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+	<head>
+		<title>brat text generator</title>
+
+		<meta property="og:url" content="https://brat.skye-does.dev" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="brat text generator" />
+		<meta property="og:description" content="Brat text generator" />
+		<meta property="og:image" content="https://brat.skye-does.dev/image.png" />
+		<meta property="og:image:width" content="63" />
+		<meta property="og:image:height" content="64" />
+		<meta name="theme-color" content="#8ace03" />
+
+		<link rel="icon" type="image/png" href="/image.png" />
+
+		<meta name="darkreader-lock" />
+		<style>
+			html {
+				height: 100%;
+				width: 100%;
+			}
+
+			body {
+				height: 100%;
+				width: 100%;
+				margin: 0;
+				background-color: #8ace03;
+			}
+
+			#container {
+				height: calc(100% - 80px);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+
+			#content {
+				width: 4.5vw;
+				height: 3vh;
+
+				outline: 0;
+				overflow: hidden;
+				word-break: break-all;
+
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+
+				/* brat-ify */
+				text-decoration: none;
+				font-weight: 500;
+				font-family: 'Arial';
+				font-size: 6px;
+				transform: scale(18, 25);
+				filter: blur(0.1px);
+			}
+
+			#slider-container {
+				height: 80px;
+				width: 100%;
+			}
+
+			#slider-container input {
+				display: block;
+				margin: 0 auto;
+
+				-webkit-appearance: none;
+				appearance: none;
+				width: 300px;
+				height: 15px;
+				border-radius: 5px;
+				background: #2e2b2b;
+			}
+
+			.slider::-webkit-slider-thumb {
+				-webkit-appearance: none;
+				appearance: none;
+				width: 25px;
+				height: 25px;
+				border-radius: 50%;
+				background: #04aa6d;
+				cursor: pointer;
+			}
+
+			.slider::-moz-range-thumb {
+				width: 25px;
+				height: 25px;
+				border-radius: 50%;
+				background: #04aa6d;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="container">
+			<div id="content" contenteditable="true" spellcheck="false" autofocus>brat</div>
+		</div>
+		<div id="slider-container">
+			<input
+				type="range"
+				min="4"
+				max="12"
+				value="6"
+				class="slider"
+				id="myRange"
+				oninput="onChange(this.value)"
+				onchange="onChange(this.value)"
+			/>
+		</div>
+	</body>
+
+	<script>
+		// legacy clients
+		const elem = document.getElementById('content');
+
+		window.onload = function () {
+			elem.focus();
+			setTimeout(() => {
+				const sel = window.getSelection();
+				sel.selectAllChildren(elem);
+				sel.collapseToEnd();
+			});
+		};
+
+		function onChange(val) {
+			elem.style['fontSize'] = val + 'px';
+			elem.style.filter = `blur(${val / 60}px)`;
+		}
+	</script>
+</html>
