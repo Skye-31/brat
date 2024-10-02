@@ -1,3 +1,12 @@
 #:schema="node_modules/wrangler/config-schema.json"
 name = "brat-text-generator"
-pages_build_output_dir = "src"
+compatibility_date = "2024-09-25"
+
+[route]
+pattern = "brat.skye-does.dev"
+custom_domain = true
+
+[assets]
+directory = "src"
+html_handling = "drop-trailing-slash"
+not_found_handling = "single-page-application"

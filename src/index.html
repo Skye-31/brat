@@ -118,6 +118,8 @@
 		const elem = document.getElementById('content');
 
 		window.onload = function () {
+			if (window.location.pathname !== '/') window.location.href = '/';
+
 			elem.focus();
 			setTimeout(() => {
 				const sel = window.getSelection();
